@@ -1,116 +1,172 @@
-<!doctype html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<title>JSNES: A JavaScript NES emulator</title>
-	<meta name="keywords" content="JSNES">
-	<meta name="content" content="JSNES, emulator">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-    <link type="text/css" rel="stylesheet" href="css/login.css">
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="icon" type="image/gif" href="images/favicon.ico" />
+<title>JSNES | ËÕÔÀÄş²©¿Í</title>
+<meta name="keywords" content="fc,ÔÚÏßfcÓÎÏ·,»ê¶·ÂŞ,³¬¼¶ÂêÀö,ÈÌÕßÁú½£´«" />
+<meta name="description" content="ÔÚÏßfcÓÎÏ·£¬¿ÉÒÔ½üºõÍêÃÀµÄ»¹Ô­fc¿¨´øÓÎÏ·µÄÊÓÆµºÍÉùÒô¡£" />
+<link href="css/templatemo_style.css" rel="stylesheet" type="text/css" />
 </head>
-<body class="login_bj" >
-<div class="zhuce_body">
-	<div class="logo"><a href="http://suyuening.com">è‹å²³å®åšå®¢</a>&nbsp;|&nbsp<a href="/">JSNES</a></div>
-    <div class="zhuce_kong login_kuang">
-    	<div class="zc">
-        	<div class="bj_hei">
-            <div id="emulator"></div>
-          </div>
-        </div>
-    </div>
+<body onload="scrollTo(0,document.body.scrollHeight)">
+<div id="templatemo_wrapper_outer">
+<div id="templatemo_wrapper_inner">
 
+    <div id="templatemo_banner"></div> <!-- end of banner -->
+
+    <div id="templatemo_menu">
+	    <ul>
+            <li><a href="http://suyuening.com">Ê×Ò³</a></li>
+            <li><a href="/static/jsnes" class="current">JSNES</a></li>
+        </ul>
+    </div> <!-- end of menu -->
+
+    <div id="templatemo_content_wrapper">
+
+    	<div class="templatemo_side_bar margin_right_10">
+
+          <div class="header_01">ÓÎÏ·ËµÃ÷</div>
+          <ul>
+          	  <li><a>Ñ¡ÔñÓÎÏ·... = µã»÷ÓÎÏ·ÁĞ±íÏÂÀ­¿òÑ¡Ôñ</a></li>
+          	  <li><a>ÔİÍ£&¼ÌĞø = ÔİÍ£»ò¼ÌĞøÓÎÏ·</a></li>
+              <li><a>ÖØĞÂ¿ªÊ¼ = ÖØĞÂ¿ªÊ¼ÓÎÏ·</a></li>
+              <li><a>´ò¿ª&¹Ø±ÕÉùÒô = ´ò¿ª»ò¹Ø±ÕÓÎÏ·ÉùÒô</a></li>
+              <li><a>·Å´ó&ËõĞ¡ = ·Å´ó»òËõĞ¡ÓÎÏ·´°¿Ú</a></li>
+          </ul>
+          <br/>
+          <div class="header_01">ÓÎÏ·¿ØÖÆ</div>
+          <ul>
+          	  <li><a>A = K</a></li>
+              <li><a>B = J</a></li>
+              <li><a>ÉÏ = W</a></li>
+              <li><a>ÏÂ = S</a></li>
+              <li><a>×ó = A</a></li>
+              <li><a>ÓÒ = D</a></li>
+              <li><a>¿ªÊ¼ = ENTER</a></li>
+              <li><a>Ñ¡Ôñ = CTRL</a></li>
+          </ul>
+      </div> <!-- end of left side bar -->
+
+      <div class="templatemo_play margin_right_10">
+			<center>
+		  <div id="emulator"></div>
+			</center>
+	    </div> <!-- end of content -->
+
+      <div class="cleaner"></div>
+    </div> <!-- end of content wrapper -->
 </div>
-    <script src="lib/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="lib/dynamicaudio-min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/nes.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/utils.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/cpu.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/keyboard.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/mappers.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/papu.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/ppu.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/rom.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/ui.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" charset="utf-8">
-        var nes;
-        $(function() {
-            nes = new JSNES({
-                'ui': $('#emulator').JSNESUI({
-                    "ç»å…¸": [
-                        //['Concentration Room', 'roms/croom/croom.nes'],
-                        //['LJ65', 'roms/lj65/lj65.nes'],
-                        ['èµ¤å½±æˆ˜å£« Kage', 'roms/other/Kage.nes'],
-                        //['èµ¤è‰²è¦å¡ (KC) Jackal', 'roms/other/Jackal.nes'],
-                        ['ä¸­å›½è±¡æ£‹', 'roms/other/Zhong Guo Xiang Qi.nes'],
-                        ['åƒè±†ç²¾çµ (J) (V1.1) Pac-Man [!]', 'roms/other/Pac-Man.nes'],
-                        ['æ‘©æ‰˜è½¦å¤§èµ› (J) (PRG1) Mach Rider [!]', 'roms/other/Mach Rider.nes'],
-                    ],
-                    "é­‚æ–—ç½—": [
-                        ['é­‚æ–—ç½—(U)30S', 'roms/Contra/Contra1(U)30S.nes'],
-                    ],
-                    "å¦å…‹": [
-                        ['å¦å…‹ (Ch) Missile Tank', 'roms/rom1/(Ch) Missile Tank.nes'],
-                        ['å¦å…‹ (Ch) Tank 1990', 'roms/rom1/(Ch) Tank 1990.nes'],
-                        ['å¦å…‹ (J) Battle City', 'roms/rom1/(J) Battle City.nes'],
-                    ],
-                    "å…¶å®ƒä¸€": [
-                        ['Concentration Room', 'roms/croom/croom.nes'],
-                        ['ä¿„ç½—æ–¯æ–¹å—LJ65', 'roms/lj65/lj65.nes'],
-                        ['ç½‘çƒTennis(JU)', 'roms/other/Tennis (JU) [!].nes'],
-                        ['ä¿„ç½—æ–¯æ–¹å—Tetris(U)', 'roms/other/Tetris (U) [!].nes'],
-                        ['ä¿„ç½—æ–¯æ–¹å—Tetris 2(U)', 'roms/other/Tetris 2 (U) [!].nes'],
-                        ['Zelda II - The Adventure of Link(U)', 'roms/other/Zelda II - The Adventure of Link (U).nes'],
-                        
-                        //['AVéº»é›€ä¿±ä¹éƒ¨ (Hacker) AV Mahjongg', 'roms/rom1/ (Hacker) AV Mahjongg.nes'],
-                        ['F1èµ›è½¦ (J) F-1 Race [!]', 'roms/rom1/(J) F-1 Race [!].nes'],
-                        //['ä¸ƒå®å¥‡è°‹1 (J) Goonies, The [!]', 'roms/rom1/(J) Goonies, The [!].nes'],
-                        //['ä¿„ç½—æ–¯æ–¹å— (Tengen) Tetris [!]', 'roms/rom1/(Tengen) Tetris [!].nes'],
-                        //['å…µèœ‚1 (J) TwinBee [!]', 'roms/rom1/(J) TwinBee [!].nes'],
-                        //['å†’é™©å²›1 (J) Takahashi Meijin no Bouken Shima [!]', 'roms/rom1/(J) Takahashi Meijin no Bouken Shima [!].nes'],
-                        ['åŠŸå¤« (J) (V1.2) Yie Ar Kung-Fu [!]', 'roms/rom1/(J) (V1.2) Yie Ar Kung-Fu [!].nes'],
-                        //['å—æå¤§å†’é™© (J) Antarctic Adventure [!]', 'roms/rom1/(J) Antarctic Adventure [!].nes'],
-                        //['å®å½“1 (J) Dig Dug [!]', 'roms/rom1/(J) Dig Dug [!].nes'],
-                        //['åƒè±†ç²¾çµ (J) (V1.0) Pac-Man [!]', 'roms/rom1/(J) (V1.0) Pac-Man [!].nes'],
-                        ['åœ°åº•æ¢é™©1 (J) Spelunker [!]', 'roms/rom1/(J) Spelunker [!].nes'],
+</div>
 
-                        //['å°èœœèœ‚ (J) Galaxian [!]', 'roms/rom1/(J) Galaxian [!].nes'],
-                        //['å½±ä¹‹ä¼ è¯´ (J) Kage no Densetsu [!]', 'roms/rom1/(J) Kage no Densetsu [!].nes'],
-                        ['å¿«ä¹çŒ« (J) Mappy [!]', 'roms/rom1/(J) Mappy [!].nes'],
-                        ['æˆé¾™è¸¢é¦†1 (J) Spartan X [!]', 'roms/rom1/(J) Spartan X [!].nes'],
-                        //['æ‰“ç –å—1 (J) Arkanoid [!]', 'roms/rom1/(J) Arkanoid [!].nes'],
-                        ['æ‘©æ‰˜è½¦å¤§èµ› (JU) (PRG0) Mach Rider [!]', 'roms/rom1/(JU) (PRG0) Mach Rider [!].nes'],
-                        ['æ•²å†°å— (J) Ice Climber', 'roms/rom1/(J) Ice Climber.nes'],
-                        ['æ·˜é‡‘è€…', 'roms/rom1/TaoJinZhe.nes'],
-                        ['ç«ç®­è½¦ (J) Road Fighter [!]', 'roms/rom1/(J) Road Fighter [!].nes'],
-                        ['ç‚¸å¼¹äºº1 (J) Bomberman [!]', 'roms/rom1/(J) Bomberman [!].nes'],
-                        ['çŒªå°å¼Ÿ (J) Pooyan', 'roms/rom1/(J) Pooyan.nes'],
-                        ['è¶…çº§é©¬é‡Œå¥¥1 (W) Super Mario Bros. [!]', 'roms/rom1/(W) Super Mario Bros. [!].nes'],
-                        ['è¶Šé‡æœºè½¦ (JU) Excitebike [!]', 'roms/rom1/(JU) Excitebike [!].nes'],
-                        ['é©¬æˆå›¢ (J) Circus Charlie [!]', 'roms/rom1/(J) Circus Charlie [!].nes'],
-                        ['é©¬é‡Œå¥¥æ‹†å±‹å·¥ (W) Wrecking Crew [!]', 'roms/rom1/(W) Wrecking Crew [!].nes'],
-                    ],
-                    //"å¿è€…é¾™å‰‘ä¼ ": [
-                    //    ['å¿è€…é¾™å‰‘ä¼ 1 (PC10) Ninja Gaiden', 'roms/Ninja_Gaiden/Ninja_Gaiden1.nes'],
-                    //    ['å¿è€…é¾™å‰‘ä¼ 2 (PC10) Ninja Gaiden II - The Dark Sword of Chaos', 'roms/Ninja_Gaiden/Ninja_Gaiden2.nes'],
-                    //    ['å¿è€…é¾™å‰‘ä¼ 3 (PC10) Ninja Gaiden III - The Ancient Ship of Doom', 'roms/Ninja_Gaiden/Ninja_Gaiden3.nes'],
-                    //],
-                    //"å¿è€…ç¥é¾Ÿ": [
-                    //    ['å¿è€…ç¥é¾Ÿ1 (J) Teenage Mutant Ninja Turtles [!]', 'roms/Teenage_Mutant_Ninja_Turtles/Teenage Mutant Ninja Turtles1.nes'],
-                    //    ['å¿è€…ç¥é¾Ÿ2 (J) Teenage Mutant Ninja Turtles 2 - The Manhattan Project', 'roms/Teenage_Mutant_Ninja_Turtles/Teenage Mutant Ninja Turtles 2 - The Manhattan Project.nes'],
-                    //],
-                    "å…¶å®ƒäºŒ": [
-                        ['æ²™ç½—æ›¼è›‡ (U) Life Force', 'roms/rom2/Life Force [!].nes'],
-                        //['èŠ±å¼æ’çƒ (U) Side Pocket', 'roms/rom2/Side Pocket.nes'],
-                        //['å½©è™¹å²› (U) Rainbow Islands', 'roms/rom2/Rainbow Islands.nes'],
-                        ['1943 (U) 1943 - The Battle of Midway', 'roms/rom2/1943.nes'],
-                        //['å¿«æ‰“æ—‹é£ (U) Mighty Final Fight', 'roms/rom2/Mighty Final Fight.nes'],
-                    ],
-                })
-            });
+<div id="templatemo_footer">
+<a href="http://suyuening.com">ËÕÔÀÄş²©¿Í</a>&nbsp;|&nbsp;<a href="https://github.com/bfirsh/jsnes" target="_blank">jsnes</a>
+</div> <!-- end of footer -->
+<div class="margin_bottom_10"></div>
+
+<script src="lib/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="lib/dynamicaudio-min.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/nes.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/utils.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/cpu.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/keyboard.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/mappers.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/papu.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/ppu.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/rom.js" type="text/javascript" charset="utf-8"></script>
+<script src="source/ui.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    var nes;
+    $(function() {
+        nes = new JSNES({
+            'ui': $('#emulator').JSNESUI({
+                "¾­µä": [
+                    //['Concentration Room', 'roms/croom/croom.nes'],
+                    //['LJ65', 'roms/lj65/lj65.nes'],
+                    ['³àÓ°Õ½Ê¿ Kage', 'roms/other/Kage.nes'],
+                    //['³àÉ«ÒªÈû (KC) Jackal', 'roms/other/Jackal.nes'],
+                    ['ÖĞ¹úÏóÆå', 'roms/other/Zhong Guo Xiang Qi.nes'],
+                    ['³Ô¶¹¾«Áé (J) (V1.1) Pac-Man [!]', 'roms/other/Pac-Man.nes'],
+                    ['Ä¦ÍĞ³µ´óÈü (J) (PRG1) Mach Rider [!]', 'roms/other/Mach Rider.nes'],
+                ],
+                "»ê¶·ÂŞ": [
+                    ['»ê¶·ÂŞ1(U)30', 'roms/Contra/Contra1(U)30.nes'],
+                    ['»ê¶·ÂŞ1(U)30F', 'roms/Contra/Contra1(U)30F.nes'],
+                    ['»ê¶·ÂŞ1(U)30L', 'roms/Contra/Contra1(U)30L.nes'],
+                    ['»ê¶·ÂŞ1(U)30M', 'roms/Contra/Contra1(U)30M.nes'],
+                    ['»ê¶·ÂŞ1(U)30S', 'roms/Contra/Contra1(U)30S.nes'],
+                    ['»ê¶·ÂŞ1(U)F', 'roms/Contra/Contra1(U)F.nes'],
+                    ['»ê¶·ÂŞ1(U)L', 'roms/Contra/Contra1(U)L.nes'],
+                    ['»ê¶·ÂŞ1(U)M', 'roms/Contra/Contra1(U)M.nes'],
+                    ['»ê¶·ÂŞ1(U)S', 'roms/Contra/Contra1(U)S.nes'],
+                ],
+                "Ì¹¿Ë": [
+                    ['Ì¹¿Ë (Ch) Missile Tank', 'roms/rom1/(Ch) Missile Tank.nes'],
+                    ['Ì¹¿Ë (Ch) Tank 1990', 'roms/rom1/(Ch) Tank 1990.nes'],
+                    ['Ì¹¿Ë (J) Battle City', 'roms/rom1/(J) Battle City.nes'],
+                ],
+                "ÆäËüÒ»": [
+                    ['Concentration Room', 'roms/croom/croom.nes'],
+                    ['¶íÂŞË¹·½¿éLJ65', 'roms/lj65/lj65.nes'],
+                    ['ÍøÇòTennis(JU)', 'roms/other/Tennis (JU) [!].nes'],
+                   ['¶íÂŞË¹·½¿éTetris(U)', 'roms/other/Tetris (U) [!].nes'],
+                    ['¶íÂŞË¹·½¿éTetris 2(U)', 'roms/other/Tetris 2 (U) [!].nes'],
+                    ['Zelda II - The Adventure of Link(U)', 'roms/other/Zelda II - The Adventure of Link (U).nes'],
+
+                    //['AVÂéÈ¸¾ãÀÖ²¿ (Hacker) AV Mahjongg', 'roms/rom1/ (Hacker) AV Mahjongg.nes'],
+                    ['F1Èü³µ (J) F-1 Race [!]', 'roms/rom1/(J) F-1 Race [!].nes'],
+                    //['Æß±¦ÆæÄ±1 (J) Goonies, The [!]', 'roms/rom1/(J) Goonies, The [!].nes'],
+                    //['¶íÂŞË¹·½¿é (Tengen) Tetris [!]', 'roms/rom1/(Tengen) Tetris [!].nes'],
+                    //['±ø·ä1 (J) TwinBee [!]', 'roms/rom1/(J) TwinBee [!].nes'],
+                    //['Ã°ÏÕµº1 (J) Takahashi Meijin no Bouken Shima [!]', 'roms/rom1/(J) Takahashi Meijin no Bouken Shima [!].nes'],
+                    ['¹¦·ò (J) (V1.2) Yie Ar Kung-Fu [!]', 'roms/rom1/(J) (V1.2) Yie Ar Kung-Fu [!].nes'],
+                    //['ÄÏ¼«´óÃ°ÏÕ (J) Antarctic Adventure [!]', 'roms/rom1/(J) Antarctic Adventure [!].nes'],
+                    //['¶£µ±1 (J) Dig Dug [!]', 'roms/rom1/(J) Dig Dug [!].nes'],
+                    //['³Ô¶¹¾«Áé (J) (V1.0) Pac-Man [!]', 'roms/rom1/(J) (V1.0) Pac-Man [!].nes'],
+                    ['µØµ×Ì½ÏÕ1 (J) Spelunker [!]', 'roms/rom1/(J) Spelunker [!].nes'],
+                  //['Ğ¡ÃÛ·ä (J) Galaxian [!]', 'roms/rom1/(J) Galaxian [!].nes'],
+                    //['Ó°Ö®´«Ëµ (J) Kage no Densetsu [!]', 'roms/rom1/(J) Kage no Densetsu [!].nes'],
+                    ['¿ìÀÖÃ¨ (J) Mappy [!]', 'roms/rom1/(J) Mappy [!].nes'],
+                    ['³ÉÁúÌß¹İ1 (J) Spartan X [!]', 'roms/rom1/(J) Spartan X [!].nes'],
+                    //['´ò×©¿é1 (J) Arkanoid [!]', 'roms/rom1/(J) Arkanoid [!].nes'],
+                    ['Ä¦ÍĞ³µ´óÈü (JU) (PRG0) Mach Rider [!]', 'roms/rom1/(JU) (PRG0) Mach Rider [!].nes'],
+                    ['ÇÃ±ù¿é (J) Ice Climber', 'roms/rom1/(J) Ice Climber.nes'],
+                    ['ÌÔ½ğÕß(ºº»¯)', 'roms/rom1/TaoJinZhe.nes'],
+                    ['ÌÔ½ğÕß(J)', 'roms/rom1/Championship Lode Runner (J).nes'],
+                    ['»ğ¼ı³µ (J) Road Fighter [!]', 'roms/rom1/(J) Road Fighter [!].nes'],
+                    ['Õ¨µ¯ÈË1 (J) Bomberman [!]', 'roms/rom1/(J) Bomberman [!].nes'],
+                    ['ÖíĞ¡µÜ (J) Pooyan', 'roms/rom1/(J) Pooyan.nes'],
+                    ['³¬¼¶ÂíÀï°Â1 (W) Super Mario Bros. [!]', 'roms/rom1/(W) Super Mario Bros. [!].nes'],
+                    ['Ô½Ò°»ú³µ (JU) Excitebike [!]', 'roms/rom1/(JU) Excitebike [!].nes'],
+                    ['ÂíÏ·ÍÅ (J) Circus Charlie [!]', 'roms/rom1/(J) Circus Charlie [!].nes'],
+                    ['ÂíÀï°Â²ğÎİ¹¤ (W) Wrecking Crew [!]', 'roms/rom1/(W) Wrecking Crew [!].nes'],
+
+                ],
+                //"ÈÌÕßÁú½£´«": [
+                //    ['ÈÌÕßÁú½£´«1 (PC10) Ninja Gaiden', 'roms/Ninja_Gaiden/Ninja_Gaiden1.nes'],
+                //    ['ÈÌÕßÁú½£´«2 (PC10) Ninja Gaiden II - The Dark Sword of Chaos', 'roms/Ninja_Gaiden/Ninja_Gaiden2.nes'],
+                //    ['ÈÌÕßÁú½£´«3 (PC10) Ninja Gaiden III - The Ancient Ship of Doom', 'roms/Ninja_Gaiden/Ninja_Gaiden3.nes'],
+                //],
+                "Ë«½ØÁú Double Dragon": [
+                    ['Ë«½ØÁú1 Double Dragon1', 'roms/Double Dragon/Double Dragon1.nes'],
+                    ['Ë«½ØÁú2 Double Dragon2', 'roms/Double Dragon/Double Dragon2.nes'],
+                    ['Ë«½ØÁú3 Double Dragon3', 'roms/Double Dragon/Double Dragon3.nes'],
+                    ['Ë«½ØÁú4 Double Dragon4', 'roms/Double Dragon/Double Dragon4.nes'],
+                ],
+                "ÆäËü¶ş": [
+                    ['É³ÂŞÂüÉß (U) Life Force', 'roms/rom2/Life Force [!].nes'],
+                    //['»¨Ê½×²Çò (U) Side Pocket', 'roms/rom2/Side Pocket.nes'],
+                    //['²Êºçµº (U) Rainbow Islands', 'roms/rom2/Rainbow Islands.nes'],
+                    ['1943 (U) 1943 - The Battle of Midway', 'roms/rom2/1943.nes'],
+                    //['¿ì´òĞı·ç (U) Mighty Final Fight', 'roms/rom2/Mighty Final Fight.nes'],
+                    ['ÍÑÓü Cross Fire (J)', 'roms/rom2/Cross Fire (J).nes'],
+                    ['×²Çò¿§·È¹İ Shufflepuck Cafe', 'roms/rom2/Shufflepuck Cafe.nes'],
+                ],
+            })
         });
-    </script>
-    <!--[if IE]>
-        <script type="text/vbscript" src="source/jsnes-ie-hacks.vbscript"></script>
-    <![endif]-->
+    });
+</script>
+<!--[if IE]>
+    <script type="text/vbscript" src="source/jsnes-ie-hacks.vbscript"></script>
+<![endif]-->
 </body>
 </html>

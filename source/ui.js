@@ -50,7 +50,7 @@ if (typeof jQuery !== 'undefined') {
                 self.buttons = {
                     pause: $('<input type="button" value="暂停" class="nes-pause" disabled="disabled">').appendTo(self.controls),
                     restart: $('<input type="button" value="重新开始" class="nes-restart" disabled="disabled">').appendTo(self.controls),
-                    sound: $('<input type="button" value="关闭声音" class="nes-enablesound">').appendTo(self.controls),
+                    sound: $('<input type="button" value="打开声音" class="nes-enablesound">').appendTo(self.controls),
                     zoom: $('<input type="button" value="放大" class="nes-zoom">').appendTo(self.controls)
                 };
                 self.status = $('<p class="nes-status">Booting up...</p>').appendTo(self.root);
@@ -260,7 +260,7 @@ if (typeof jQuery !== 'undefined') {
         
                 setRoms: function(roms) {
                     this.romSelect.children().remove();
-                    $("<option>请选择游戏...</option>").appendTo(this.romSelect);
+                    $("<option>选择游戏...</option>").appendTo(this.romSelect);
                     for (var groupName in roms) {
                         if (roms.hasOwnProperty(groupName)) {
                             var optgroup = $('<optgroup></optgroup>').
