@@ -1,25 +1,6 @@
 JSNES
 =====
 
-A JavaScript NES emulator.
+一个JavaScript NES模拟器.
 
-Build
------
-
-To build a distribution, you will [Grunt](http://gruntjs.com):
-
-    $ sudo npm install -g grunt-cli
-
-Then run:
-
-    $ npm install
-    $ grunt
-
-This will create ``jsnes.js`` and ``jsnes-min.js`` in ``build/``.
-
-Benchmark
----------
-
-The benchmark in ``test/benchmark.js`` is intended for testing JavaScript 
-engines. It does not depend on a DOM or Canvas element etc.
-
+点击[在线玩NES游戏](http://suyuening.com/static/jsnes/)
