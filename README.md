@@ -1,6 +1,6 @@
 JSNES
 =====
 
-Ò»¸öJavaScript NESÄ£ÄâÆ÷.
+ä¸€ä¸ªJavaScript NESæ¨¡æ‹Ÿå™¨.
 
-µã»÷[ÔÚÏßÍæNESÓÎÏ·](http://suyuening.com/static/jsnes/)
+ç‚¹å‡»[åœ¨çº¿ç©NESæ¸¸æˆ](http://jsnes.cn/)
